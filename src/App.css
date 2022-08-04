@@ -1,0 +1,15 @@
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+}
+
+#root {
+    width: 100vw;
+}
+
+.App {
+    margin-top: 80px;
+}

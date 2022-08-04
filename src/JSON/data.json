@@ -1,0 +1,218 @@
+[
+  {
+    "Category": [
+      {
+        "categoryId": 1,
+        "categoryName": "Diabetes",
+        "data": [
+          {
+            "Id": 1,
+            "title": "Low carb atta"
+          },
+          {
+            "Id": 2,
+            "title": "Low carb snacks"
+          },
+          {
+            "Id": 3,
+            "title": "Dried fruits/vegetables"
+          },
+          {
+            "Id": 4,
+            "title": "Low GI food"
+          },
+          {
+            "Id": 5,
+            "title": "Diabetic Rice or substitutes"
+          },
+          {
+            "Id": 6,
+            "title": "Sugar substitutes"
+          },
+          {
+            "Id": 7,
+            "title": "Nutrition products with Multivitamins"
+          },
+          {
+            "Id": 8,
+            "title": "Protien Powders"
+          },
+          {
+            "Id": 9,
+            "title": "Herbs/Spices"
+          },
+          {
+            "Id": 10,
+            "title": "Ayurvedic Revitalizers and medicines"
+          },
+          {
+            "Id": 11,
+            "title": "Beverages"
+          }
+        ]
+      },
+      {
+        "categoryId": 2,
+        "categoryName": "Geriatrics",
+        "data": [
+          {
+            "Id": 1,
+            "title": "Vitamins and Protein deficiency"
+          },
+          {
+            "Id": 2,
+            "title": "Indigesion"
+          },
+          {
+            "Id": 3,
+            "title": "Hypertension"
+          },
+          {
+            "Id": 4,
+            "title": "Senile Debility"
+          },
+          {
+            "Id": 5,
+            "title": "Depression"
+          },
+          {
+            "Id": 6,
+            "title": "Dementia"
+          }
+        ]
+      },
+      {
+        "categoryId": 3,
+        "categoryName": "Mother and Child",
+        "data": [
+          {
+            "Id": 1,
+            "title": "Infertility"
+          },
+          {
+            "Id": 2,
+            "title": "Planning to concieve"
+          },
+          {
+            "Id": 3,
+            "title": "Early Pregnancy"
+          },
+          {
+            "Id": 4,
+            "title": "Pregnancy"
+          },
+          {
+            "Id": 5,
+            "title": "Depression"
+          },
+          {
+            "Id": 6,
+            "title": "NewBorns"
+          },
+          {
+            "Id": 7,
+            "title": "Infants"
+          },
+          {
+            "Id": 8,
+            "title": "Toddlers"
+          },
+          {
+            "Id": 9,
+            "title": "Preschoolers"
+          },
+          {
+            "Id": 10,
+            "title": "Grade schoolers"
+          },
+          {
+            "Id": 11,
+            "title": "Pre-teens"
+          },
+          {
+            "Id": 12,
+            "title": "Teens/Adolescents"
+          }
+        ]
+      },
+      {
+        "categoryId": 4,
+        "categoryName": "Organic",
+        "data": [
+          {
+            "Id": 1,
+            "title": "Low carb atta"
+          },
+          {
+            "Id": 2,
+            "title": "Low carb snacks"
+          },
+          {
+            "Id": 3,
+            "title": "Dried fruits/vegetables"
+          },
+          {
+            "Id": 4,
+            "title": "Low GI food"
+          },
+          {
+            "Id": 5,
+            "title": "Cold pressed oil"
+          }
+        ]
+      },
+      {
+        "categoryId": 5,
+        "categoryName": "Nutraceuticals",
+        "data": [
+          {
+            "Id": 1,
+            "title": "Vitamins and Protein deficiency"
+          },
+          {
+            "Id": 2,
+            "title": "Indigestion"
+          },
+          {
+            "Id": 3,
+            "title": "Ayurvedic Revitalizers and Medicines"
+          },
+          {
+            "Id": 4,
+            "title": "Beverages"
+          }
+        ]
+      },
+      {
+        "categoryId": 6,
+        "categoryName": "Plant Based Food",
+        "data": [
+          {
+            "userId": 1,
+            "title": "Vitamins and Proteins Deficiancy"
+          },
+          {
+            "userId": 2,
+            "title": "Indigestion"
+          },
+          {
+            "userId": 3,
+            "title": "Hypertenstion"
+          },
+          {
+            "userId": 4,
+            "title": "Senile Debility"
+          },
+          {
+            "userId": 5,
+            "title": "Depression"
+          },
+          {
+            "userId": 6,
+            "title": "Dementia"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -22,6 +22,7 @@ const ProductPage = () => {
 	let { id } = useParams();
 	//console.log('useparams', id);
 	const [ product, setProducts ] = React.useState(null);
+
 	const getProduct = async () => {
 		const res = await Submit({}, '/product/' + id, 'get');
 
@@ -31,6 +32,7 @@ const ProductPage = () => {
 	useEffect(
 		() => {
 			getProduct();
+			getEvent();
 		},
 		[ id ]
 	);

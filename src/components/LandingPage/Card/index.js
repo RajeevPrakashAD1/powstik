@@ -21,6 +21,7 @@ const ProductResults = (props) => {
 				<DiscountTag> {props.discount}% OFF</DiscountTag>
 				<StyledImage src={props.image} />
 				<ProductType> {props.subtitle} </ProductType>
+
 				<ProductDesc> {cutter(props.description)} </ProductDesc>
 				<ProductPrice> ₹{props.price} </ProductPrice>
 				<StyledBtn onClick={handleClick}> View Product</StyledBtn>

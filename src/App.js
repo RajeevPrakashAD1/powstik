@@ -45,7 +45,7 @@ function App() {
 					<Route path="/updateservice" element={<UpdateService />} />
 					<Route path="/product/:id" element={<ProductPage />} />
 					<Route path="/service" element={<ServicePage />} />
-					<Route path="/product" element={<ProductOverview />} />
+					{/* <Route path="/product" element={<ProductOverview />} /> */}
 					<Route path="/contact-us" element={<ContactUs />} />
 					<Route path="/tos" element={<Tos />} />
 					<Route path="/about" element={<About />} />

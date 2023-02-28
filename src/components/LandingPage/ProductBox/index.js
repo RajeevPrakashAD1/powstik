@@ -22,7 +22,7 @@ const ProductBox = () => {
 			{categories.map((item, index) => {
 				return (
 					<React.Fragment>
-						<CardHeaders key={index} main={item.category_name} sub={item.category_description} />
+						<CardHeaders key={index} main={item.category_name} sub={item.description} />
 						<CardSlider category={item.category_name} />
 						{/* products={product.filter((product) => product.category === item.category_name)} */}
 					</React.Fragment>

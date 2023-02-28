@@ -40,7 +40,7 @@ const CardSlider = ({ category }) => {
 	console.log('slicder category: ', category);
 	let products = useSelector((state) => state.product.product);
 	console.log('products', products);
-	products = products.filter((product) => product.categories.includes(category));
+	//products = products.filter((product) => product.categories.includes(category));
 	//console.log('slider products', products);
 
 	var settings = {

@@ -46,7 +46,7 @@ const array = [
 ];
 const Characteristics = () => {
 	const categories = useSelector((state) => state.category.categories);
-	//console.log('categories =', categories, typeof categories);
+	// console.log('categories =', categories, typeof categories);
 	return (
 		<React.Fragment>
 			<Wrapper>

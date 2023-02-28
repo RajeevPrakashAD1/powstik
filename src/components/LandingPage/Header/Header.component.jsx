@@ -25,37 +25,36 @@ const Header = () => {
 			<HeaderBox>
 				<CompanyHeaderName>
 					<CompanyNameImage to="/" />
-				</CompanyHeaderName>
+				</CompanyHeaderName>{' '}
 				<HeaderLink>
 					<HeaderLinks
 						onMouseEnter={setIsOpen.bind(null, true)}
 						onMouseLeave={setIsOpen.bind(null, false)}
-						to="/product"
+						to="/product/1"
 					>
-						Products
-					</HeaderLinks>
-					<HeaderLinks to="/service">Services</HeaderLinks>
-					<InputField />
+						Products{' '}
+					</HeaderLinks>{' '}
+					<HeaderLinks to="/service"> Services </HeaderLinks> <InputField />
 					<Link to="/cart">
-						<img src={cart} alt="cart" style={{ width: 30, height: 30 }} />
-					</Link>
+						<img src={cart} alt="cart" style={{ width: 30, height: 30 }} />{' '}
+					</Link>{' '}
 					{/* <Link to="/account-details">
-						<img src={AccountImage} alt="Account" style={{ width: 30, height: 30 }} />
-					</Link> */}
+            						<img src={AccountImage} alt="Account" style={{ width: 30, height: 30 }} />
+            					</Link> */}{' '}
 					<Navpop />
-				</HeaderLink>
+				</HeaderLink>{' '}
 				<HamburgerMenu onClick={() => setOpen(!open)}>
 					<MenuIcon fontSize="large" />
-				</HamburgerMenu>
-			</HeaderBox>
-			<BurgerButton open={open} />
+				</HamburgerMenu>{' '}
+			</HeaderBox>{' '}
+			<BurgerButton open={open} />{' '}
 			{isOpen && (
 				<NavLinks
 					onMouseEnter={setIsOpen.bind(null, true)}
 					onMouseLeave={setIsOpen.bind(null, false)}
 					Open={isOpen}
 				/>
-			)}
+			)}{' '}
 		</React.Fragment>
 	);
 };

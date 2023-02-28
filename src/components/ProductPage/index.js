@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import DescriptionAndBuy from './DescriptionAndBuy/DescriptionAndBuy.component';
 import {
 	ProductContainer,
@@ -21,18 +22,24 @@ import CardSlider from '../LandingPage/SlickSlider';
 const ProductPage = () => {
 	let { id } = useParams();
 	//console.log('useparams', id);
-	const [ product, setProducts ] = React.useState(null);
+	//const [ product, setProducts ] = React.useState(null);
+
+	const products = useSelector((state) => state.product.product);
+	const product = products[0];
+	console.log('products', product);
+	// setProducts(products[0]);
 
 	const getProduct = async () => {
-		const res = await Submit({}, '/product/' + id, 'get');
-
-		setProducts(res.data);
-		console.log('product data', res.data);
+		// const res = await Submit({}, '/product/' + id, 'get');
+		// setProducts(res.data);
+		// console.log('product data', res.data);
+		// setProducts(products[0]);
+		// console.log(product);
 	};
 	useEffect(
 		() => {
-			getProduct();
-			getEvent();
+			//getProduct();
+			//getEvent();
 		},
 		[ id ]
 	);

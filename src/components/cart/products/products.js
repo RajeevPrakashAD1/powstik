@@ -61,7 +61,6 @@ const Wrapper = styled.div`
 		}
 		.selh1 {
 			margin-left: 15px !important;
-		}import { useSelector } from 'react-redux';
-
+		}
 	}
 `;

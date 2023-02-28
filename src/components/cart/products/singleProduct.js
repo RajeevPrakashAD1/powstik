@@ -11,13 +11,17 @@ import x from '../../../assets/x.png';
 import { Checkbox } from '../../../util/StyledComponent/input';
 import { Submit } from '../../../configApi/function';
 import { addItem, removeItem, clearCart } from '../../../Store/cartSelectedItemSlice/cartSelectedItemSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeCart } from '../../../Store/cartSlice/cartslice';
 
 const SingleProduct = ({ product_id }) => {
 	const dispatch = useDispatch();
-	console.log(product_id);
-	const [ data, setData ] = useState('');
+
+	const products = useSelector((state) => state.product.product);
+	var data = products.filter((p) => p.product_id == product_id);
+	data = data[0];
+	console.log('data', data);
+	//const [ data, setData ] = useState('');
 	const [ checked, setChecked ] = useState(false);
 	const [ quantity, setQuantity ] = useState(1);
 	const handleClick = () => {
@@ -36,14 +40,14 @@ const SingleProduct = ({ product_id }) => {
 		dispatch(removeItem({ id: product_id }));
 	};
 	useEffect(() => {
-		const fetch = async () => {
-			const res = await Submit({}, '/product/' + product_id, 'get');
-			//console.log('product', res);
-			//console.log(res.data);
-			setData(res.data);
-			dispatch(clearCart());
-		};
-		fetch();
+		// const fetch = async () => {
+		// 	const res = await Submit({}, '/product/' + product_id, 'get');
+		// 	//console.log('product', res);
+		// 	//console.log(res.data);
+		// 	setData(res.data);
+		// 	dispatch(clearCart());
+		// };
+		// fetch();
 	}, []);
 
 	return (

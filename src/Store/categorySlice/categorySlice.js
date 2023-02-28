@@ -1,7 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	categories: []
+	categories: [
+		{
+			category_name: 'Diabetes',
+			description: 'this is an example of description ',
+			image:
+				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRsn3cesnLNwc0e7jku8q0AK2A2-zx2zWemA&usqp=CAU',
+			category_description: 'this is an example of description'
+		},
+		{
+			category_name: 'Diabetes',
+			description: 'this is an example of description ',
+			image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRsn3cesnLNwc0e7jku8q0AK2A2-zx2zWemA&usqp=CAU'
+		},
+		{
+			category_name: 'Diabetes',
+			description: 'this is an example of description ',
+			image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRsn3cesnLNwc0e7jku8q0AK2A2-zx2zWemA&usqp=CAU'
+		}
+	]
 };
 
 export const CategorySlice = createSlice({
@@ -16,7 +34,10 @@ export const CategorySlice = createSlice({
 			// immutable state based off those changes
 			// console.log('red=', action.payload);
 			// console.log('user', state, action);
-			state.categories = action.payload;
+			// console.log('...category', action.payload);
+			if (action.payload.length > 0) {
+				state.categories = action.payload;
+			}
 			// if (state.messageArray[action.payload.roomId]) {user
 			// 	state.messageArray[action.payload.roomId].push(action.payload);
 			// } else {

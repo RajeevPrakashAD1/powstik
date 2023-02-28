@@ -9,14 +9,14 @@ import { useSelector } from 'react-redux';
 
 const Coupon = (props) => {
 	const items = useSelector((state) => state.cartSelectedItem.cartSelectedItem);
-	console.log(items);
+	console.log('items', items);
 	const [ mrp, setmrp ] = useState(0);
 
 	useEffect(
 		() => {
 			let tmrp = 0;
 			for (let i of items) {
-				tmrp += i.price;
+				tmrp += parseInt(i.price);
 			}
 			setmrp(tmrp);
 		},

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Checkbox } from '../../../util/StyledComponent/input';
 import { H1 } from './../../../util/StyledComponent/premadeComponent';
 import GButton from '../../../util/buttons/reusableButton/button';
 import { Input } from './../../../util/StyledComponent/input';
@@ -26,7 +25,7 @@ const Coupon = (props) => {
 	return (
 		<React.Fragment>
 			<Wrapper>
-				<H1 size="20" weight="400">
+				<H1 size="19" weight="400">
 					COUPONS
 				</H1>
 				<div className="cpnin">

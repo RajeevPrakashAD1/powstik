@@ -26,28 +26,28 @@ const Header = () => {
 				<CompanyHeaderName>
 					<CompanyNameImage to="/" />
 				</CompanyHeaderName>{' '}
+				  {' '}
 				<HeaderLink>
 					<HeaderLinks
 						onMouseEnter={setIsOpen.bind(null, true)}
 						onMouseLeave={setIsOpen.bind(null, false)}
 						to="/product/1"
 					>
-						Products{' '}
+						Products  {' '}
 					</HeaderLinks>{' '}
-					<HeaderLinks to="/service"> Services </HeaderLinks> <InputField />
+					 <HeaderLinks to="/service"> Services </HeaderLinks> <InputField />
 					<Link to="/cart">
-						<img src={cart} alt="cart" style={{ width: 30, height: 30 }} />{' '}
+						<img src={cart} alt="cart" style={{ width: 30, height: 30 }} />  {' '}
 					</Link>{' '}
-					{/* <Link to="/account-details">
-            						<img src={AccountImage} alt="Account" style={{ width: 30, height: 30 }} />
-            					</Link> */}{' '}
-					<Navpop />
+					 <Navpop />
 				</HeaderLink>{' '}
+				  {' '}
 				<HamburgerMenu onClick={() => setOpen(!open)}>
 					<MenuIcon fontSize="large" />
 				</HamburgerMenu>{' '}
+				  {' '}
 			</HeaderBox>{' '}
-			<BurgerButton open={open} />{' '}
+			 <BurgerButton open={open} />  {' '}
 			{isOpen && (
 				<NavLinks
 					onMouseEnter={setIsOpen.bind(null, true)}

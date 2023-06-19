@@ -22,7 +22,7 @@ const Signup = () => {
 	const navigate = useNavigate();
 
 	const onSubmit = async (data) => {
-		data['is_seller'] = !user;
+		data['type'] = user ? 'customer' : 'seller';
 		//console.log(data);
 
 		//const baseURL = 'https://powstik-back-test.azurewebsites.net';
@@ -31,20 +31,20 @@ const Signup = () => {
 			NotifyDanger('not valid email');
 			return;
 		}
-		if (data.terms == false) {
-			NotifyDanger('Please accept the terms and conditions');
-			return;
-		}
+		// if (data.terms == false) {
+		// 	NotifyDanger('Please accept the terms and conditions');
+		// 	return;
+		// }
 		if (data.password !== data.confirmPassword) {
 			NotifyDanger('Password and Confirm Password does not match');
 			return;
 		}
-		if (isNaN(data.phone)) {
+		if (isNaN(data.phoneNumber)) {
 			NotifyDanger('Phone number is not valid');
 			return;
 		}
 
-		if (data.phone.length < 10 || data.phone.length > 13) {
+		if (data.phoneNumber.length < 10 || data.phoneNumber.length > 13) {
 			NotifyDanger('Phone number is not valid');
 			return;
 		}
@@ -53,7 +53,7 @@ const Signup = () => {
 		const data2 = JSON.parse(JSON.stringify(data));
 		//console.log(data2);
 
-		const res = await Submit(data2, '/register', 'post');
+		const res = await Submit(data2, '/signup', 'post');
 		if (res.status === 200 || res.status === 201) {
 			NotifySuccess('Successfully registered');
 			//alert('Successfully registered');
@@ -91,11 +91,11 @@ const Signup = () => {
 							<form onSubmit={handleSubmit(onSubmit)}>
 								<div className="fdiv">
 									<P1 color="#000"> First Name* </P1>
-									<Input placeholder="rajeev" {...register('first_name', { required: true })} />
-									{errors.last_name && <span className="fontcolor">This field is required</span>}
+									<Input placeholder="rajeev" {...register('firstName', { required: true })} />
+									{errors.firstName && <span className="fontcolor">This field is required</span>}
 									<P1 color="#000"> Last Name *</P1>
-									<Input placeholder="prakash" {...register('last_name', { required: true })} />
-									{errors.last_name && <span className="fontcolor">This field is required</span>}
+									<Input placeholder="prakash" {...register('lastName', { required: true })} />
+									{errors.lastName && <span className="fontcolor">This field is required</span>}
 
 									<P1 color="#000">Email Address *</P1>
 									<Input
@@ -105,8 +105,8 @@ const Signup = () => {
 									{errors.email && <span className="fontcolor">This field is required</span>}
 
 									<P1 color="#000"> Phone Number*</P1>
-									<Input placeholder="9636282628" {...register('phone', { required: true })} />
-									{errors.phone && <span className="fontcolor">This field is required</span>}
+									<Input placeholder="9636282628" {...register('phoneNumber', { required: true })} />
+									{errors.phoneNumber && <span className="fontcolor">This field is required</span>}
 
 									<P1 color="#000"> Password*</P1>
 									<Input placeholder="****" {...register('password', { required: true })} />
@@ -145,7 +145,7 @@ const Signup = () => {
 											style={{ accentColor: 'rgba(139, 195, 74, 0.8)' }}
 											{...register('terms')}
 										/>
-										<Link to="#"> Accept Terms and condition</Link>
+										<Link to="/na"> Accept Terms and condition</Link>
 									</div>
 
 									<LSButton title="Register" />

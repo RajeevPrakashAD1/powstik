@@ -1,1 +1,1 @@
-export const baseURL = 'https://powstik-back-test.azurewebsites.net';
+export const baseURL = 'http://localhost:8000';

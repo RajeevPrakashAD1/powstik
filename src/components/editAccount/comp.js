@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Submit } from '../../configApi/function';
+import { SubmitWithFile } from '../../configApi/function';
 import { getUserDetails } from '../../configApi/utilFunction';
 import GButton from '../../util/buttons/reusableButton/button';
 
@@ -10,13 +10,31 @@ import { P2 } from './../../util/StyledComponent/premadeComponent';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { baseURL } from '../../configApi/config';
+import { NotifySuccess, Toastcontainer } from '../../util/notify';
 
 const Comp = (props) => {
 	const { register, handleSubmit, watch, formState: { errors } } = useForm();
 	const data = useSelector((state) => state.user.user);
 	//console.log(data);
 	const onSubmit = async (data) => {
-		console.log(data);
+		console.log('submitted');
+		const formData = new FormData();
+
+		Object.keys(data).forEach((key) => {
+			if (key === 'profile_image') {
+				// Append file to FormData
+				formData.append(key, data[key][0]);
+			} else {
+				// Append other form fields to FormData
+				formData.append(key, data[key]);
+			}
+		});
+		const res = await SubmitWithFile(formData, '/updateAccount', 'post');
+		console.log('res', res);
+		if (res) {
+			//alert('successfully modified!');
+			NotifySuccess('successfully uploded');
+		}
 	};
 
 	useEffect(() => {
@@ -35,11 +53,11 @@ const Comp = (props) => {
 				</div>
 				<div className="onediv">
 					<P2>First Name</P2>
-					<Input placeholder="name" {...register('first_name', { required: true })} />
+					<Input placeholder="name" {...register('firstName', { required: true })} />
 				</div>
 				<div className="onediv">
 					<P2>Last Name </P2>
-					<Input {...register('last_name', { required: true })} />
+					<Input {...register('lastName', { required: true })} />
 				</div>
 				<div className="onediv">
 					<P2>Gender </P2>
@@ -47,7 +65,7 @@ const Comp = (props) => {
 				</div>
 				<div className="onediv">
 					<P2>Phone </P2>
-					<Input {...register('phone', { required: true })} />
+					<Input {...register('phoneNumber', { required: true })} />
 				</div>
 				<div className="onediv">
 					<P2>Email Addrress </P2>
@@ -82,6 +100,7 @@ const Comp = (props) => {
 					<GButton type="submit" title="SAVE CHANGES" width="300px" bg="#8BC34A" />
 				</div>
 			</form>
+			<Toastcontainer />
 		</Wrapper>
 	);
 };
@@ -124,18 +143,6 @@ const Wrapper = styled.div`
 		margin-bottom: 50px;
 		align-items: center;
 
-        const onSubmit = async (data) => {
-		const res = await Submit(data, '/login', 'post');
-		console.log('res......', res);
-		if (res.status === 200) {
-			localStorage.setItem('access', res.data.access);
-			localStorage.setItem('isLoggedIn', true);
-			console.log('locally saved');
-		}
-	};
-    useEffect(()=>{
-
-    })
 		justify-content: space-around;
 	}
 	.Cgbtn {
@@ -144,11 +151,12 @@ const Wrapper = styled.div`
 		margin-right: 20px;
 		width: 300px;
 		color: #8bc34a;
-        margin:20px;
+		margin: 20px;
 	}
 
-    @media(max-width: 500px) {
-    .onedivbtn {
-        flex-direction: column;
-    }
+	@media (max-width: 500px) {
+		.onedivbtn {
+			flex-direction: column;
+		}
+	}
 `;

@@ -28,14 +28,16 @@ const Login = () => {
 			return;
 		}
 		const res = await Submit(data, '/login', 'post');
-		console.log('res......', res);
+		//console.log('res......', res);
 		if (res.status === 200 || res.status === 201) {
 			NotifySuccess('login success');
-			localStorage.setItem('access', res.data.access);
+			localStorage.setItem('token', res.data.token);
 			localStorage.setItem('isLoggedIn', true);
 			console.log('locally saved');
 			//alert('loged in');
 			// navigate('/account-details');
+			console.log('login data', res.data.user);
+			dispatch(addUser(res.data.user));
 			setTimeout(function() {
 				navigate('/account-details');
 			}, 1000);
@@ -79,7 +81,7 @@ const Login = () => {
 											<input className="ccbox" type="checkbox" name="cbox" />
 											<span>Remember Me</span>
 										</div>
-										<Link to="/" className="link">
+										<Link to="/na" className="link">
 											Forgot Password
 										</Link>
 									</div>

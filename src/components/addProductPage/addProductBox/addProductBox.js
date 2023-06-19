@@ -30,17 +30,17 @@ const AddProductInput = () => {
 		// "discount": 20,
 		// "categories": "diabetes",
 		// "related_products": 34
-		const formDataimg = new FormData();
+		//const formDataimg = new FormData();
 
-		for (let i of uploaded_images) {
-			try {
-				const image = await resizeFile(i);
-				//console.log(image);
-				formDataimg.append('image', image);
-			} catch (err) {
-				console.log(err);
-			}
-		}
+		// for (let i of uploaded_images) {
+		// 	try {
+		// 		const image = await resizeFile(i);
+		// 		//console.log(image);
+		// 		formDataimg.append('image', image);
+		// 	} catch (err) {
+		// 		console.log(err);
+		// 	}
+		// }
 		const formData = new FormData();
 		formData.append('name', data.name);
 		formData.append('qty_left', data.qty_left);
@@ -52,7 +52,7 @@ const AddProductInput = () => {
 			formData.append('uploaded_images', i);
 		}
 
-		//const res = await SubmitWithFile(formData, '/product/add', 'post');
+		const res = await SubmitWithFile(formData, '/product/add', 'post');
 	};
 
 	const [ uploaded_images, set_uploaded_images ] = useState([]);
@@ -67,7 +67,7 @@ const AddProductInput = () => {
 
 	//select things
 	const options = categories.map((category) => {
-		return { value: category.category_name, label: category.category_name };
+		return { value: category.name, label: category.name };
 	});
 
 	useEffect(() => {

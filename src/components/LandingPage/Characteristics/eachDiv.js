@@ -12,7 +12,7 @@ const Div = (props) => {
 			<div className="up">
 				<H1 size="25" className="p1">
 					{' '}
-					{props.item.category_name}{' '}
+					{props.item.name}{' '}
 				</H1>
 				<P1 className="p1"> {props.item.description} </P1>
 			</div>

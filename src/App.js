@@ -26,11 +26,15 @@ import NoRoutes from './components/noRoutes/noroutes';
 import Header from './components/LandingPage/Header/Header.component';
 import ProductOverview from './components/Products/ProductOverview/ProductOverview.component';
 
+import FetchUserDetails from './configApi/fetchUser';
+
 function App() {
 	return (
 		<Router>
 			<div className="App">
 				<Header />
+				<FetchUserDetails />
+
 				<Routes>
 					<Route path="/" element={<LandingPage />} />
 					<Route path="/login" element={<Login />} />
@@ -52,6 +56,7 @@ function App() {
 					<Route path="/refund-policy" element={<RefundPolicy />} />
 					<Route path="/privacy-policy" element={<PrivacyPolicy />} />
 					<Route path="/credits" element={<Credits />} />
+					<Route path="/addProduct" element={<AddProduct />} />
 					<Route path="*" element={<NoRoutes />} />
 				</Routes>
 			</div>

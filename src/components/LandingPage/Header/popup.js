@@ -14,6 +14,13 @@ import { Link } from 'react-router-dom';
 
 const Div2 = () => {};
 const Navpop = (props) => {
+	const handleLogout = () => {
+		// Remove the token from local storage
+		localStorage.removeItem('token');
+
+		// Refresh the page to clear the application state
+		window.location.reload();
+	};
 	return (
 		<React.Fragment>
 			<Tippy
@@ -42,8 +49,8 @@ const Navpop = (props) => {
 									<P1>Notification</P1>
 								</div>
 							</Link>
-							<Link to={`/logout`}>
-								<div className="pdiv">
+							<Link to={`/`}>
+								<div className="pdiv" onClick={handleLogout}>
 									<img className="cedimg" src={logout} alt="a" width="20px" height="20px" />
 									<P1>Logout</P1>
 								</div>

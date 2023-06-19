@@ -8,10 +8,11 @@ import { addCart } from '../Store/cartSlice/cartslice';
 
 export const getCategory = async () => {
 	try {
-		const res = await Submit({}, '/category/', 'get');
+		const res = await Submit({}, '/categories/', 'get');
 
 		//const dispatch = useDispatch();
-		store.dispatch(addCategory(res.data.result));
+		console.log('calling distpatch', res);
+		store.dispatch(addCategory(res.data));
 	} catch (err) {
 		console.log(err);
 		return err;
@@ -20,10 +21,10 @@ export const getCategory = async () => {
 
 export const getUserDetails = async () => {
 	try {
-		const res = await Submit({}, '/user/getuser', 'get');
+		const res = await Submit({}, '/userDetails', 'post');
 
 		//const dispatch = useDispatch();
-		if (res) store.dispatch(addUser(res.data));
+		if (res) store.dispatch(addUser(res.data.user));
 	} catch (err) {
 		console.log(err);
 		return err;

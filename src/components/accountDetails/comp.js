@@ -6,26 +6,37 @@ import { Input } from '../../util/StyledComponent/input';
 import { P2, H1, P1 } from './../../util/StyledComponent/premadeComponent';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { bufferToBase64 } from '../../util/utilfunction';
 
 const Comp = (props) => {
-	// const data = {
-	// 	firstname: 'firstname',
-	// 	lastname: 'lastname',
-	// 	gender: 'gender',
-	// 	phone: 'phone',
-	// 	'Email Address': 'email',
-	// 	'Country / Region': 'dolor sit',
-	// 	'Town / City': 'town',
-	// 	'Street Address': 'kjldfasklsadlkjasd dladaslk',
-	// 	'Door.no/Plot.no': 'xxx',
-	// 	state: 'state',
-	// 	pin: 'xxx',
-	// 	type: 'vendor'
-	// };
+	//     fieldname: 'profile_image',
+	//     originalname: 'myPic.jpeg',
+	//     encoding: '7bit',
+	//     mimetype: 'image/jpeg',
+	//     destination: './Profile_uploads/',
+	//     filename: 'myPic.jpeg',
+	//     path: 'Profile_uploads\\myPic.jpeg',
+	//     size: 154187
+	//   } body [Object: null prototype] {
+	//     firstName: 'raj',
+	//     lastName: 'fads',
+	//     gender: 'mal',
+	//     phoneNumber: '983',
+	//     email: 'rajeev.prakash2020@vitstudent.ac.in',
+	//     country_region: 'dsaf',
+	//     town_city: 'df',
+	//     street_name: 'df',
+	//     doorno: 'dfs',
+	//     state: 'dsfa',
+	//     pin: '980'
 	const navigate = useNavigate();
 	const data = useSelector((state) => state.user.user);
 	const [ loggedIn, setLoggedIn ] = useState(false);
 	//console.log(data);
+	var imageSource = '#';
+	if (data.first_name != 'Not logged in') {
+		imageSource = `data:image/jpeg;base64,${bufferToBase64(data.profilePic.data.data)}`;
+	}
 
 	useEffect(
 		() => {
@@ -41,18 +52,18 @@ const Comp = (props) => {
 		<Wrapper>
 			<div className="onedivimg">
 				<div className="eaimg">
-					<img src={'#'} alt="icon" />
+					<img height="100" width="100" src={imageSource} alt="icon" />
 				</div>
 				<div>
 					<H1 size="18" weight="600">
-						{data.first_name + ' '}
+						{data.firstName + ' '}
 
-						{data.last_name}
+						{data.lastName}
 					</H1>
 					<P1 size="14">{data.user_id}</P1>
 					<P1 size="14" weight="600" color="#8BC34A">
 						{' '}
-						{data.is_seller ? 'vendor' : 'customer'}
+						{data.type}
 					</P1>
 				</div>
 			</div>
@@ -69,7 +80,7 @@ const Comp = (props) => {
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">Phone</P2>
-						<P2 color="#616161">{data.phone}</P2>
+						<P2 color="#616161">{data.phoneNumber}</P2>
 					</div>
 				</div>
 
@@ -84,42 +95,42 @@ const Comp = (props) => {
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">Country/Region</P2>
-						<P2 color="#616161">{data['Country / Region']}</P2>
+						<P2 color="#616161">{data.address['country']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">Town / City</P2>
-						<P2 color="#616161">{data['Town / City']}</P2>
+						<P2 color="#616161">{data.address['city']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">Street address</P2>
-						<P2 color="#616161">{data['Street Address']}</P2>
+						<P2 color="#616161">{data.address['street']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">Door no / Plot no</P2>
-						<P2 color="#616161">{data['Door.no/Plot.no']}</P2>
+						<P2 color="#616161">{data.address['doorNo']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">State</P2>
-						<P2 color="#616161">{data['state']}</P2>
+						<P2 color="#616161">{data.address['state']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">PIN</P2>
-						<P2 color="#616161">{data['pin']}</P2>
+						<P2 color="#616161">{data.address['pin']}</P2>
 					</div>
 				</div>
 			</div>
@@ -142,22 +153,25 @@ const Wrapper = styled.div`
 	flex-wrap: wrap;
 
 	align-items: left;
-    justify-content: space-around;
+	justify-content: space-around;
 
 	padding: 5px;
 	margin: 10px;
 	@media (max-width: 500px) {
 		width: auto;
-        
 	}
 
-    .insidediv{
-        width:400px;
-        display: flex;
-        flex-direction:row;
-        justify-content:space-between;
-        margin:20px;
-    }
+	img {
+		border-radius: 50%;
+	}
+
+	.insidediv {
+		width: 400px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin: 20px;
+	}
 	.onediv {
 		margin: 20px;
 	}
@@ -174,7 +188,7 @@ const Wrapper = styled.div`
 		margin-right: 200px;
 		margin-bottom: 50px;
 		align-items: center;
-        width:300px;
+		width: 300px;
 		justify-content: space-around;
 	}
 	.onedivbtn {
@@ -184,29 +198,27 @@ const Wrapper = styled.div`
 		margin-bottom: 50px;
 		align-items: center;
 		justify-content: between;
-        margin-top:20px;
+		margin-top: 20px;
 	}
-    .Cgbtn {
+	.Cgbtn {
 		background: transparent !important;
 		border: 2px solid #8bc34a;
 		margin-right: 20px;
 		width: 300px;
 		color: #8bc34a;
-        margin:20px;
+		margin: 20px;
 	}
 
-	
+	@media (max-width: 500px) {
+		.onedivbtn {
+			flex-direction: column;
+		}
+		.insidediv {
+			width: 200px !important;
+		}
 
-    @media(max-width: 500px) {
-    .onedivbtn {
-        flex-direction: column;
-    }
-    .insidediv{
-        width:200px !important;
-    }import { useSelector } from 'react-redux';
-
-    .pdiv{
-        width:300px;
-    }
+		.pdiv {
+			width: 300px;
+		}
 	}
-	`;
+`;

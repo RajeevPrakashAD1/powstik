@@ -12,12 +12,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategory } from '../../../configApi/utilFunction';
 
 import Select from 'react-select';
-import { NotifyDanger } from '../../../util/notify';
+import { NotifyDanger, NotifySuccess } from '../../../util/notify';
 import MySelect from '../../../util/select/select';
 import { Submit, SubmitWithFile } from '../../../configApi/function';
 import { resizeFile } from '../../../util/utilfunction';
+import { ToastContainer } from 'react-toastify';
+import { MdClose } from 'react-icons/md';
 
 const AddProductInput = () => {
+	const user = useSelector((state) => state.user.user);
 	const { register, handleSubmit, watch, control, formState: { errors } } = useForm();
 	const onSubmit = async (data) => {
 		console.log(data);
@@ -30,7 +33,7 @@ const AddProductInput = () => {
 		// "discount": 20,
 		// "categories": "diabetes",
 		// "related_products": 34
-		//const formDataimg = new FormData();
+		// const formDataimg = new FormData();
 
 		// for (let i of uploaded_images) {
 		// 	try {
@@ -41,18 +44,23 @@ const AddProductInput = () => {
 		// 		console.log(err);
 		// 	}
 		// }
+		console.log('category', data.category);
 		const formData = new FormData();
 		formData.append('name', data.name);
 		formData.append('qty_left', data.qty_left);
+		formData.append('category', data.category.value);
 		//formData.append('image', data.image);
 		formData.append('description', data.productDescription);
 		formData.append('price', data.expectedPrice);
 		formData.append('discount', data.discount);
+		formData.append('vendorInformation', data.vendorDescription);
+		formData.append('email', user.email);
 		for (let i of uploaded_images) {
 			formData.append('uploaded_images', i);
 		}
 
 		const res = await SubmitWithFile(formData, '/product/add', 'post');
+		if (res) NotifySuccess('successfully uploded');
 	};
 
 	const [ uploaded_images, set_uploaded_images ] = useState([]);
@@ -63,6 +71,17 @@ const AddProductInput = () => {
 		let imgUrl = URL.createObjectURL(image);
 		set_image_url([ ...image_url, imgUrl ]);
 	};
+
+	const removeImage = (index) => {
+		const updatedImages = [ ...uploaded_images ];
+		updatedImages.splice(index, 1);
+		set_uploaded_images(updatedImages);
+
+		const updatedImageURLs = [ ...image_url ];
+		updatedImageURLs.splice(index, 1);
+		set_image_url(updatedImageURLs);
+	};
+
 	const categories = useSelector((state) => state.category.categories);
 
 	//select things
@@ -208,12 +227,19 @@ const AddProductInput = () => {
 					</StyledRow>
 					<div className="pimgdiv">
 						<H1 size="20">Uploaded images</H1>
-						{image_url.map((image, index) => <img key={index} src={image} alt="pi" className="pimg" />)}
+						{image_url.map((image, index) => (
+							<div key={index} className="pimg">
+								<img src={image} alt="pi" />
+								<button className="removeButton" onClick={() => removeImage(index)}>
+									<MdClose />
+								</button>
+							</div>
+						))}
 					</div>
 
 					<StyledRow className="mt-3 justify-content-md-center">
 						<Col md={3}>
-							<StyledButtonWhite className="mt-2 outline" type="button">
+							<StyledButtonWhite className="mt-2 outline" type="reset">
 								{' '}
 								DISCARD CHANGES{' '}
 							</StyledButtonWhite>
@@ -227,6 +253,7 @@ const AddProductInput = () => {
 					</StyledRow>
 				</StyledForm>
 			</FormBox>
+			<ToastContainer />
 		</Container>
 	);
 };
@@ -244,6 +271,8 @@ const Container = styled.div`
 		color: red;
 	}
 	.pimg {
+		position: relative;
+		display: inline-block;
 		height: 200px;
 		width: 200px;
 		margin: 10px;
@@ -255,7 +284,18 @@ const Container = styled.div`
 		}
 	}
 	.pimgdiv {
-		margin: 36px;
+		margin: 46px;
+	}
+
+	.pimg .removeButton {
+		position: absolute;
+		top: 1px;
+		left: 1px;
+		background-color: black;
+		color: white;
+		border: none;
+		font-size: 16px;
+		cursor: pointer;
 	}
 	.pselect {
 		position: absolute;

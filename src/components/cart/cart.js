@@ -5,11 +5,14 @@ import Product from './products/products';
 import styled from 'styled-components';
 import Header from './../LandingPage/Header/Header.component';
 import { H1, P1 } from './../../util/StyledComponent/premadeComponent';
-import { getCart } from '../../configApi/utilFunction';
+import { getCart, getProduct } from '../../configApi/utilFunction';
+import { useSelector } from 'react-redux';
 
 const Cart = () => {
+	const user = useSelector((state) => state.user.user);
 	useEffect(() => {
-		//getCart();
+		getCart(user.email);
+		getProduct();
 	});
 	return (
 		<React.Fragment>

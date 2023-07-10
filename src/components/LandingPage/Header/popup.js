@@ -43,10 +43,10 @@ const Navpop = (props) => {
 									<P1>Order</P1>
 								</div>
 							</Link>
-							<Link to={`/noti`}>
+							<Link to={`/wishlist`}>
 								<div className="pdiv">
 									<img className="cedimg" src={noti} alt="a" width="20px" height="20px" />
-									<P1>Notification</P1>
+									<P1>Wishlist</P1>
 								</div>
 							</Link>
 							<Link to={`/`}>

@@ -34,7 +34,7 @@ const Comp = (props) => {
 	const [ loggedIn, setLoggedIn ] = useState(false);
 	//console.log(data);
 	var imageSource = '#';
-	if (data.first_name != 'Not logged in') {
+	if (data.first_name != 'Not logged in' && data.profilePic) {
 		imageSource = `data:image/jpeg;base64,${bufferToBase64(data.profilePic.data.data)}`;
 	}
 
@@ -95,42 +95,42 @@ const Comp = (props) => {
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">Country/Region</P2>
-						<P2 color="#616161">{data.address['country']}</P2>
+						<P2 color="#616161">{data.address && data.address['country']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">Town / City</P2>
-						<P2 color="#616161">{data.address['city']}</P2>
+						<P2 color="#616161">{data.address && data.address['city']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">Street address</P2>
-						<P2 color="#616161">{data.address['street']}</P2>
+						<P2 color="#616161">{data.address && data.address['street']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">Door no / Plot no</P2>
-						<P2 color="#616161">{data.address['doorNo']}</P2>
+						<P2 color="#616161">{data.address && data.address['doorNo']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">State</P2>
-						<P2 color="#616161">{data.address['state']}</P2>
+						<P2 color="#616161">{data.address && data.address['state']}</P2>
 					</div>
 				</div>
 				<div className="ocdiv">
 					<div className="insidediv">
 						{' '}
 						<P2 color="#000">PIN</P2>
-						<P2 color="#616161">{data.address['pin']}</P2>
+						<P2 color="#616161">{data.address && data.address['pin']}</P2>
 					</div>
 				</div>
 			</div>

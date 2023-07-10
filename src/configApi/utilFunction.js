@@ -5,6 +5,7 @@ import { store } from '../Store/Store';
 import { addUser } from '../Store/userSlice/userSlice';
 import { addProduct } from '../Store/productSlice/productSlice';
 import { addCart } from '../Store/cartSlice/cartslice';
+import { bufferToBase64 } from '../util/utilfunction';
 
 export const getCategory = async () => {
 	try {
@@ -33,10 +34,11 @@ export const getUserDetails = async () => {
 
 export const getProduct = async () => {
 	try {
-		const res = await Submit({}, '/product/', 'get');
+		const res = await Submit({}, '/products', 'get');
 
 		//const dispatch = useDispatch();
-		store.dispatch(addProduct(res.data.result));
+		console.log('res Product', res);
+		store.dispatch(addProduct(res.data.data));
 	} catch (err) {
 		console.log(err);
 		return err;
@@ -54,14 +56,20 @@ export const getProduct = async () => {
 // 		return err;
 // 	}
 // };
-export const getCart = async () => {
+export const getCart = async (email) => {
 	try {
-		const res = await Submit({}, '/cart/', 'get');
+		const res = await Submit({ email: email }, '/cart-items/', 'post');
 
 		//const dispatch = useDispatch();
-		store.dispatch(addCart(res.data.result));
+		console.log('items', res.data.cartItems);
+		store.dispatch(addCart(res.data.cartItems));
 	} catch (err) {
 		console.log(err);
 		return err;
 	}
+};
+
+export const bufToImg = (data) => {
+	var imageSource = `data:image/jpeg;base64,${bufferToBase64(data)}`;
+	return imageSource;
 };

@@ -16,8 +16,11 @@ const data = [
 ];
 const Product = (props) => {
 	// console.log(props);
-	const productids = useSelector((state) => state.cart.cart);
-	console.log(productids);
+	const cartItems = useSelector((state) => state.cart.cart);
+	const productids = cartItems.map((c) => c.productId);
+
+	//console.log('pids', productids);
+	// console.log(productids);
 
 	return (
 		<React.Fragment>
@@ -30,7 +33,9 @@ const Product = (props) => {
 					</div>
 					<GButton title="Remove All" bg="#8BC34A" />
 				</div> */}
-				{productids.map((item, index) => <SingleProduct product_id={item} key={index} />)}
+				{cartItems.map((item, index) => (
+					<SingleProduct product_id={item.productId} quantity={item.quantity} key={index} />
+				))}
 			</Wrapper>
 		</React.Fragment>
 	);

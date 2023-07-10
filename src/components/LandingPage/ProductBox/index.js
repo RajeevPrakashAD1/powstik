@@ -9,7 +9,7 @@ const ProductBox = () => {
 	const [ motherAndBaby, setMotherAndBaby ] = useState([]);
 	const [ metabolics, setMetabolics ] = useState([]);
 
-	let categories = useSelector((state) => state.category.categories);
+	let categories = useSelector((state) => state.category.categories).slice(0, 3);
 	const product = useSelector((state) => state.product.product);
 
 	useEffect(() => {
@@ -22,8 +22,8 @@ const ProductBox = () => {
 			{categories.map((item, index) => {
 				return (
 					<React.Fragment>
-						<CardHeaders key={index} main={item.category_name} sub={item.description} />
-						<CardSlider category={item.category_name} />
+						<CardHeaders key={index} main={item.name} sub={item.description} />
+						<CardSlider category={item.name} />
 						{/* products={product.filter((product) => product.category === item.category_name)} */}
 					</React.Fragment>
 				);

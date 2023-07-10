@@ -18,31 +18,25 @@ import Footer from '../LandingPage/FooterWhite';
 import { useParams } from 'react-router-dom';
 import { Submit } from '../../configApi/function';
 import CardSlider from '../LandingPage/SlickSlider';
+import { getProduct } from '../../configApi/utilFunction';
+import { bufferToBase64 } from '../../util/utilfunction';
+
 // import CardSlider from './../../util/cardSlider/cardSlider';
 const ProductPage = () => {
 	let { id } = useParams();
-	//console.log('useparams', id);
-	//const [ product, setProducts ] = React.useState(null);
 
 	const products = useSelector((state) => state.product.product);
-	const product = products[0];
-	console.log('products', product);
-	// setProducts(products[0]);
+	var product = products.filter((product) => product._id == id)[0];
 
-	const getProduct = async () => {
-		// const res = await Submit({}, '/product/' + id, 'get');
-		// setProducts(res.data);
-		// console.log('product data', res.data);
-		// setProducts(products[0]);
-		// console.log(product);
+	const bufToImg = (data) => {
+		var imageSource = `data:image/jpeg;base64,${bufferToBase64(data)}`;
+		return imageSource;
 	};
-	useEffect(
-		() => {
-			//getProduct();
-			//getEvent();
-		},
-		[ id ]
-	);
+
+	useEffect(() => {
+		getProduct();
+		//getEvent();
+	}, []);
 
 	return (
 		<React.Fragment>
@@ -66,43 +60,33 @@ const ProductPage = () => {
 						<BuyContainer>
 							<ImageContainer>
 								<ImagePreview>
-									<img
-										src={product.image}
-										alt="Preview"
-										style={{ background: 'rgba(139, 195, 74, 0.2)', marginBottom: 12 }}
-										height="100px"
-									/>
-									<img
-										src={product.image}
-										alt="Preview"
-										style={{ background: 'rgba(139, 195, 74, 0.2)', marginBottom: 12 }}
-										height="100px"
-									/>
-									<img
-										src={product.image}
-										alt="Preview"
-										style={{ background: 'rgba(139, 195, 74, 0.2)', marginBottom: 12 }}
-										height="100px"
-									/>
-									<img
-										src={product.image}
-										alt="Preview"
-										style={{ background: 'rgba(139, 195, 74, 0.2)', marginBottom: 12 }}
-										height="100px"
-									/>
+									{product.uploaded_images.map((i) => (
+										<img
+											src={bufToImg(i.data)}
+											alt="Preview"
+											style={{ background: 'rgba(139, 195, 74, 0.2)', marginBottom: 12 }}
+											height="100px"
+											width="100px"
+										/>
+									))}
 								</ImagePreview>
 								<ImageShow>
 									<DiscountContainer>
 										<DiscountContent>{product.discount}% off</DiscountContent>
 									</DiscountContainer>
-									<img src={product.image} alt="BigPreview" />
+									<img
+										width="350px"
+										height="420px"
+										src={bufToImg(product.uploaded_images[0].data)}
+										alt="BigPreview"
+									/>
 								</ImageShow>
 							</ImageContainer>
 							<DescriptionAndBuy
 								id={id}
 								heading="Product Tags"
 								disease="Diabetes"
-								type={product.categories[0]}
+								type={product.category}
 								price={product.price}
 								count={1}
 								description1={product.description}
@@ -113,7 +97,7 @@ const ProductPage = () => {
 							Similar Products
 						</H1>
 						<CardsContainer>
-							<CardSlider category={product.categories[0]} />
+							<CardSlider category={product.category} />
 						</CardsContainer>
 					</ProductContainer>
 				</Container>

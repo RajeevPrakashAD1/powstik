@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	cart: [ '1' ]
+	cart: []
 };
 
 export const CartSlice = createSlice({
@@ -16,7 +16,7 @@ export const CartSlice = createSlice({
 			// immutable state based off those changes
 			// console.log('red=', action.payload);
 			//console.log('cart', state, action);
-			state.cart = [ ...state.cart, action.payload ];
+			state.cart = action.payload;
 			// if (state.messageArray[action.payload.roomId]) {user
 			// 	state.messageArray[action.payload.roomId].push(action.payload);
 			// } else {

@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import arrowLeft from '../../../assets/arrow-left.png';
 import arrowRight from '../../../assets/arrow-without-bg-right.png';
 import { useSelector } from 'react-redux';
+import { bufferToBase64 } from '../../../util/utilfunction';
 
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;
@@ -37,9 +38,17 @@ function SamplePrevArrow(props) {
 
 const CardSlider = ({ category }) => {
 	//console.log(category, 'products ==? ', products);
-	console.log('slicder category: ', category);
+	//console.log('slicder category: ', category);
 	let products = useSelector((state) => state.product.product);
-	console.log('products', products);
+	products = products.filter((product) => product.category == category);
+	var imageSource = '#';
+
+	const bufToImg = (data) => {
+		imageSource = `data:image/jpeg;base64,${bufferToBase64(data)}`;
+		return imageSource;
+	};
+
+	//console.log('products', products);
 	//products = products.filter((product) => product.categories.includes(category));
 	//console.log('slider products', products);
 
@@ -88,10 +97,10 @@ const CardSlider = ({ category }) => {
 						return (
 							<Cards>
 								<ProductCard
-									id={product.product_id}
+									id={product._id}
 									discount={product.discount}
-									image={product.image}
-									//subtitle={product.subtitle}
+									image={bufToImg(product.uploaded_images[0].data)}
+									subtitle={product.name}
 									description={product.description}
 									price={product.price}
 								/>

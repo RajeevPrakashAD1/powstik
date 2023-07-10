@@ -28,6 +28,9 @@ import ProductOverview from './components/Products/ProductOverview/ProductOvervi
 
 import FetchUserDetails from './configApi/fetchUser';
 
+import ProductsPage from './components/ProductCatalog/productCatalog';
+import CustomerOrders from './components/orders/order';
+
 function App() {
 	return (
 		<Router>
@@ -42,11 +45,13 @@ function App() {
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/edit-account" element={<EditAccount />} />
 					<Route path="/account-details" element={<AccountDetails />} />
-					<Route path="/products" element={<ProductResults />} />
+					{/* <Route path="/products" element={<ProductResults />} /> */}
 					<Route path="/addproduct" element={<AddProduct />} />
 					<Route path="/updateproduct" element={<UpdateProduct />} />
 					<Route path="/addservice" element={<AddService />} />
 					<Route path="/updateservice" element={<UpdateService />} />
+					<Route path="/products" element={<ProductsPage />} />
+
 					<Route path="/product/:id" element={<ProductPage />} />
 					<Route path="/service" element={<ServicePage />} />
 					{/* <Route path="/product" element={<ProductOverview />} /> */}
@@ -57,6 +62,8 @@ function App() {
 					<Route path="/privacy-policy" element={<PrivacyPolicy />} />
 					<Route path="/credits" element={<Credits />} />
 					<Route path="/addProduct" element={<AddProduct />} />
+					<Route path="/addService" element={<AddService />} />
+					<Route path="/order" element={<CustomerOrders />} />
 					<Route path="*" element={<NoRoutes />} />
 				</Routes>
 			</div>

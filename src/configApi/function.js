@@ -39,8 +39,8 @@ export const Submit = async (data, gurl, method) => {
 		}
 	} else if (method == 'get') {
 		try {
-			const response = await axios.get(url, config);
-			console.log(url, ' response = ', response);
+			const response = await axios.get(url, data2, config);
+			//console.log(url, ' response = ', response);
 			// NotifySuccess('success ' + response.data.message);
 			// NotifySuccess('success!');
 			return response;

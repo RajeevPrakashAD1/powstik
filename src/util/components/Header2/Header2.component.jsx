@@ -18,7 +18,7 @@ const Header2 = () => {
                 <HeaderLink>
                     <HeaderLinks>Home</HeaderLinks>
                     <HeaderLinks>Products</HeaderLinks>
-                    <HeaderLinks>Services</HeaderLinks>
+                    
                     <ShoppingCartIcon />
                     <SearchIcon />
                 </HeaderLink>

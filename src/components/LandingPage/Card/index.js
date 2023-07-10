@@ -6,6 +6,8 @@ import styled from 'styled-components';
 const cutter = (str) => {
 	if (str.length > 80) {
 		return str.substring(0, 80) + '...';
+	} else {
+		return str;
 	}
 };
 

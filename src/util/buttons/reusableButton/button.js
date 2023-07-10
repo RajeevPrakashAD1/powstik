@@ -6,10 +6,15 @@ import buttonCart from '../../../assets/buttonCart.svg';
 import { Link } from 'react-router-dom';
 
 const GButton = (props) => {
+	const handleClick = () => {
+		if (props.onClick) {
+			props.onClick();
+		}
+	};
 	return (
 		<React.Fragment>
 			<Wrapper bg={props.bg} width={props.width}>
-				<Button className="mybutton" variant="primary" type="submit" size="lg" block>
+				<Button onClick={handleClick} className="mybutton" variant="primary" type="submit" size="lg" block>
 					{props.title}
 				</Button>
 			</Wrapper>

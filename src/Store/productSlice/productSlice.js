@@ -1,78 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	product: [
-		{
-			product_id: 1,
-			discount: 30,
-			subtitle: 'subtitle....',
-			image:
-				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRsn3cesnLNwc0e7jku8q0AK2A2-zx2zWemA&usqp=CAU',
-			subtitle: 'subtitle',
-			description: 'description dasjkas lorem90 dakja adjask a das dsakjkdsa sds aj dasj fjdka asj asd',
-
-			price: '1000',
-			category: 'Health',
-			name: 'name',
-			categories: [ 'diabetes' ]
-		},
-		{
-			product_id: 2,
-			discount: 30,
-			subtitle: 'subtitle....',
-			image:
-				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRsn3cesnLNwc0e7jku8q0AK2A2-zx2zWemA&usqp=CAU',
-			subtitle: 'subtitle',
-			description: 'description dasjkas lorem90 dakja adjask a das dsakjkdsa sds aj dasj fjdka asj asd',
-
-			price: '1000',
-			category: 'Health',
-			name: 'name',
-			categories: [ 'diabetes' ]
-		},
-		{
-			product_id: 3,
-			discount: 30,
-			subtitle: 'subtitle....',
-			image:
-				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRsn3cesnLNwc0e7jku8q0AK2A2-zx2zWemA&usqp=CAU',
-			subtitle: 'subtitle',
-			description: 'description dasjkas lorem90 dakja adjask a das dsakjkdsa sds aj dasj fjdka asj asd',
-
-			price: '1000',
-			category: 'Health',
-			name: 'name',
-			categories: [ 'diabetes' ]
-		},
-		{
-			product_id: 4,
-			discount: 30,
-			subtitle: 'subtitle....',
-			image:
-				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRsn3cesnLNwc0e7jku8q0AK2A2-zx2zWemA&usqp=CAU',
-			subtitle: 'subtitle',
-			description: 'description dasjkas lorem90 dakja adjask a das dsakjkdsa sds aj dasj fjdka asj asd',
-
-			price: '1000',
-			category: 'Health',
-			name: 'name',
-			categories: [ 'diabetes' ]
-		},
-		{
-			product_id: 5,
-			discount: 30,
-			subtitle: 'subtitle....',
-			image:
-				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRsn3cesnLNwc0e7jku8q0AK2A2-zx2zWemA&usqp=CAU',
-			subtitle: 'subtitle',
-			description: 'description dasjkas lorem90 dakja adjask a das dsakjkdsa sds aj dasj fjdka asj asd',
-
-			price: '1000',
-			category: 'Health',
-			name: 'name',
-			categories: [ 'diabetes' ]
-		}
-	]
+	product: []
 };
 
 export const productSlice = createSlice({

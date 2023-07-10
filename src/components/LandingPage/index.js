@@ -15,7 +15,7 @@ import { getCategory, getProduct } from './../../configApi/utilFunction';
 const LandingPage = () => {
 	useEffect(() => {
 		getCategory();
-		//getProduct();
+		getProduct();
 	}, []);
 	return (
 		<React.Fragment>

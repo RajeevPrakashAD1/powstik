@@ -13,49 +13,37 @@ import { Submit } from '../../../configApi/function';
 import { addItem, removeItem, clearCart } from '../../../Store/cartSelectedItemSlice/cartSelectedItemSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeCart } from '../../../Store/cartSlice/cartslice';
+import { bufToImg, getCart } from '../../../configApi/utilFunction';
 
-const SingleProduct = ({ product_id }) => {
+const SingleProduct = ({ product_id, quantity }) => {
 	const dispatch = useDispatch();
-
+	const user = useSelector((state) => state.user.user);
 	const products = useSelector((state) => state.product.product);
-	var data = products.filter((p) => p.product_id == product_id);
-	data = data[0];
-	console.log('data', data);
+	var data1 = products.filter((p) => p._id == product_id);
+
+	var data = data1[0];
+	//console.log('data-->', data, data1, products);
 	//const [ data, setData ] = useState('');
 	const [ checked, setChecked ] = useState(false);
-	const [ quantity, setQuantity ] = useState(1);
-	const handleClick = () => {
-		//console.log('clicked....', checked);
-		setChecked(checked ? false : true);
-		if (!checked) {
-			dispatch(addItem({ id: product_id, price: data.price }));
-		} else {
-			dispatch(removeItem({ id: product_id }));
-		}
-	};
 
-	const handleCrossClick = () => {
-		console.log('clicked....cross');
-		dispatch(removeCart({ id: product_id }));
-		dispatch(removeItem({ id: product_id }));
+	const handleCrossClick = async () => {
+		await Submit({ email: user.email, productId: product_id }, '/remove-from-cart', 'post');
+		getCart(user.email);
 	};
-	useEffect(() => {
-		// const fetch = async () => {
-		// 	const res = await Submit({}, '/product/' + product_id, 'get');
-		// 	//console.log('product', res);
-		// 	//console.log(res.data);
-		// 	setData(res.data);
-		// 	dispatch(clearCart());
-		// };
-		// fetch();
-	}, []);
+	const handleminus = async () => {
+		await Submit({ email: user.email, productId: product_id }, '/cart/decrement', 'post');
+		getCart(user.email);
+	};
+	const handleplus = async () => {
+		await Submit({ email: user.email, productId: product_id }, '/cart/increment', 'post');
+		getCart(user.email);
+	};
 
 	return (
 		data && (
 			<Wrapper>
 				<div className="up">
-					<Checkbox checked={checked} onClick={handleClick} type="checkbox" />
-					<img className="cedimg" src={data.image} height="90" alt="icon" />
+					<img className="cedimg" src={bufToImg(data.uploaded_images[0].data)} height="90" alt="icon" />
 				</div>
 				<div className="down">
 					<H1 size="20" lineHeight="20.11px">
@@ -65,8 +53,14 @@ const SingleProduct = ({ product_id }) => {
 						{/* {desc} */}
 					</P1>
 					<P1 size="18" weight="300">
-						item quantity: <button className="iqbtn">-</button> <div className="qdiv">1</div>
-						<button className="iqbtn">+</button>
+						item quantity:
+						<button className="iqbtn" onClick={handleminus}>
+							-
+						</button>
+						<div className="qdiv">{quantity}</div>
+						<button className="iqbtn" onClick={handleplus}>
+							+
+						</button>
 					</P1>
 					<H1 size="18"> {data.price}</H1>
 				</div>

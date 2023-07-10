@@ -24,14 +24,14 @@ const Header = () => {
 		<React.Fragment>
 			<HeaderBox>
 				<CompanyHeaderName>
-					<CompanyNameImage to="/" />
+					<CompanyNameImage to="/" />  {' '}
 				</CompanyHeaderName>{' '}
 				  {' '}
 				<HeaderLink>
 					<HeaderLinks
 						onMouseEnter={setIsOpen.bind(null, true)}
 						onMouseLeave={setIsOpen.bind(null, false)}
-						to="/product/1"
+						to="/products"
 					>
 						Products  {' '}
 					</HeaderLinks>{' '}
@@ -55,6 +55,7 @@ const Header = () => {
 					Open={isOpen}
 				/>
 			)}{' '}
+			   {' '}
 		</React.Fragment>
 	);
 };

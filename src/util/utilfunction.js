@@ -40,3 +40,8 @@ export const bufferToBase64 = (buffer) => {
 	}
 	return window.btoa(binary);
 };
+
+export const bufToImg = (data) => {
+	var imageSource = `data:image/jpeg;base64,${bufferToBase64(data)}`;
+	return imageSource;
+};

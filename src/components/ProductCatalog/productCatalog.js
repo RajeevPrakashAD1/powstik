@@ -163,7 +163,7 @@ const ProductPage = () => {
 export default ProductPage;
 
 const ProductWrapper = styled.div`
-	background-color: ;
+	border: 50px solid #e8f3db;
 	.mdiv {
 		display: flex;
 		flex-direction: column;

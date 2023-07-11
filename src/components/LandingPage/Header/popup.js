@@ -1,5 +1,5 @@
 import { Button, Tooltip } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Tippy from '@tippyjs/react';
 import AccountImage from '../../../assets/Group.svg';
@@ -10,10 +10,16 @@ import logout from '../../../assets/logout.png';
 
 import { H1, P1 } from '../../../util/StyledComponent/premadeComponent';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getUserDetails } from '../../../configApi/utilFunction';
 //images
 
 const Div2 = () => {};
 const Navpop = (props) => {
+	const user = useSelector((state) => state.user.user);
+	useEffect(() => {
+		getUserDetails();
+	}, []);
 	const handleLogout = () => {
 		// Remove the token from local storage
 		localStorage.removeItem('token');
@@ -49,6 +55,24 @@ const Navpop = (props) => {
 									<P1>Wishlist</P1>
 								</div>
 							</Link>
+
+							{user.type == 'seller' && (
+								<Link to={`/addproduct`}>
+									<div className="pdiv">
+										<img className="cedimg" src={noti} alt="a" width="20px" height="20px" />
+										<P1>Add Product</P1>
+									</div>
+								</Link>
+							)}
+							{user.type == 'seller' && (
+								<Link to={`/orderreceived`}>
+									<div className="pdiv">
+										<img className="cedimg" src={order} alt="a" width="20px" height="20px" />
+										<P1>Orders Received</P1>
+									</div>
+								</Link>
+							)}
+
 							<Link to={`/`}>
 								<div className="pdiv" onClick={handleLogout}>
 									<img className="cedimg" src={logout} alt="a" width="20px" height="20px" />
@@ -69,9 +93,8 @@ const Navpop = (props) => {
 export default Navpop;
 
 const Wrapper = styled.div`
-	width: 150px;
-	height: 120px;
-	background-color: white;
+	width: 190px;
+	${'' /* height: 240px; */} background-color: white;
 	padding: 5px;
 	${'' /* box-shadow: 5px 10px #888888; */} filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(4px 0px 4px rgba(139, 195, 74, 0.2));
 	.cedimg {

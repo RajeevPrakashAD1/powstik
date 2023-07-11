@@ -4,7 +4,7 @@ import UpdateProductInput from './updateProductBox/updateProductBox'
 import Footer from '../LandingPage/FooterWhite'
 import Header from '../LandingPage/Header/Header.component'
 
-const UpdateProduct = () => {
+const   UpdateProduct = () => {
   return (
     <>
         <Header />

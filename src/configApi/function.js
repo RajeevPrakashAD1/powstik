@@ -29,12 +29,12 @@ export const Submit = async (data, gurl, method) => {
 			return response;
 		} catch (err) {
 			console.log('error..................', err);
-			if (err.response.status === 409) {
-				NotifyDanger('conflict user already registered');
-			} else {
-				NotifyDanger(err.message);
-				// NotifyDanger('plz try again');
-			}
+			// if (err.response.status === 409) {
+			// 	NotifyDanger('conflict user already registered');
+			// } else {
+			// 	NotifyDanger(err.message);
+			// 	// NotifyDanger('plz try again');
+			// }
 			return err;
 		}
 	} else if (method == 'get') {
@@ -78,7 +78,7 @@ export const SubmitWithFile = async (data, gurl, method) => {
 			return response;
 		} catch (err) {
 			console.log(err);
-			NotifyDanger(err.message);
+			// NotifyDanger(err.message);
 			return err;
 		}
 	}

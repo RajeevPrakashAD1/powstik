@@ -14,11 +14,13 @@ const Coupon = (props) => {
 	const items = useSelector((state) => state.cart.cart);
 	const user = useSelector((state) => state.user.user);
 	const products = useSelector((state) => state.product.product);
-	console.log('items', items);
+	//console.log('items', items);
 	const [ mrp, setmrp ] = useState(0);
+	const [ done, setDone ] = useState(0);
 
 	const handleplaceOrder = async () => {
 		//console.log('clicked');
+
 		if (!user.address) {
 			NotifyDanger('please update your address in account section');
 			return;
@@ -48,6 +50,7 @@ const Coupon = (props) => {
 				}
 			}
 		}
+		setDone(1);
 	};
 
 	useEffect(
@@ -55,7 +58,7 @@ const Coupon = (props) => {
 			getProduct();
 			getCart(user.email);
 		},
-		[ user.email ]
+		[ user.email, done ]
 	); // Fetch product and cart data whenever user.email changes
 
 	useEffect(
@@ -67,7 +70,7 @@ const Coupon = (props) => {
 			}
 			setmrp(tmrp);
 		},
-		[ items, products ]
+		[ items, products, done ]
 	);
 
 	return (

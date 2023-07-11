@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { getProduct, getUserDetails } from '../../configApi/utilFunction';
 import { OrderUi } from './orderUi';
 
-const CustomerOrders = ({}) => {
+const Merchantorder = ({}) => {
 	const [ orders, setOrders ] = useState([]);
 	const products = useSelector((state) => state.product.product);
 
@@ -29,7 +29,7 @@ const CustomerOrders = ({}) => {
 	const fetchOrders = async () => {
 		try {
 			// Make an API request to fetch orders for the customer
-			const response = await Submit({ buyerEmail: user.email }, '/customerorder', 'post');
+			const response = await Submit({ sellerEmail: user.email }, '/merchantorder', 'post');
 			//console.log('customerOrder', response);
 
 			setOrders(response.data);
@@ -40,7 +40,7 @@ const CustomerOrders = ({}) => {
 
 	return (
 		<Pdiv>
-			<h2>Customer Orders</h2>
+			<h2>Your Orders Received</h2>
 			{orders.length === 0 ? (
 				<p>No orders found.</p>
 			) : (
@@ -53,6 +53,7 @@ const CustomerOrders = ({}) => {
 									quantity={order.totalPrice / pd.price}
 									totalPrice={order.totalPrice}
 									imgSrc={pd.uploaded_images[0].data}
+									buyerEmail={order.buyerEmail}
 								/>
 							</li>
 						))
@@ -63,6 +64,6 @@ const CustomerOrders = ({}) => {
 	);
 };
 
-export default CustomerOrders;
+export default Merchantorder;
 
 const Pdiv = styled.div`border: 50px solid #e8f3db;`;

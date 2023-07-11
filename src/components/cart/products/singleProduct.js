@@ -43,7 +43,13 @@ const SingleProduct = ({ product_id, quantity }) => {
 		data && (
 			<Wrapper>
 				<div className="up">
-					<img className="cedimg" src={bufToImg(data.uploaded_images[0].data)} height="90" alt="icon" />
+					<img
+						className="cedimg"
+						src={bufToImg(data.uploaded_images[0].data)}
+						height="90"
+						width="90"
+						alt="icon"
+					/>
 				</div>
 				<div className="down">
 					<H1 size="20" lineHeight="20.11px">

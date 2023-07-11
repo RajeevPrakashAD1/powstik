@@ -18,7 +18,9 @@ const DiscountBar = () => {
 				</P1>
 			</DiscountDescription>
 			<DiscountDownload>
-				<Wrapper to="/account-details">Download Now</Wrapper>
+				<Wrapper to="#" onClick={() => alert('Not Available now')}>
+					Download Now
+				</Wrapper>
 			</DiscountDownload>
 		</DiscountContainer>
 	);

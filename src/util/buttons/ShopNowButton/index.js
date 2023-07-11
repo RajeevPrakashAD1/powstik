@@ -8,10 +8,12 @@ const BookButton = () => {
 	return (
 		<React.Fragment>
 			<Wrapper>
-				<Button className="mybutton" variant="primary" size="lg" block>
-					<img src={buttonCart} alt="fb" />
-					Shop Now
-				</Button>
+				<Link to="/products">
+					<Button className="mybutton" variant="primary" size="lg" block>
+						<img src={buttonCart} alt="fb" />
+						Shop Now
+					</Button>
+				</Link>
 			</Wrapper>
 		</React.Fragment>
 	);

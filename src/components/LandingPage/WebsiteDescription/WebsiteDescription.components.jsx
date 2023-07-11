@@ -15,14 +15,17 @@ function WebsiteDescription() {
 		<DescriptionWrapper>
 			<Description>
 				<Diseases>
-					Geriatrics, Nephrology, Obesity, Diabetes, Hyperlipidemia, Hypertension, Obstetrics, Paediatrics...{' '}
+					Geriatrics, Nephrology, Obesity, Diabetes, Hyperlipidemia, Hypertension, Obstetrics, Paediatrics... {' '}
+					{' '}
 				</Diseases>{' '}
-				<NutritionWork> Specialty Nutrition That Works! </NutritionWork>{' '}
+				 <NutritionWork> Specialty Nutrition That Works! </NutritionWork> {' '}
 				<Rating> Highest Rated Regional Vendors </Rating> <BookButton />
 			</Description>{' '}
+			{' '}
 			<DescriptionImageContainer>
-				<img src={Image} alt="Some Product" style={{ minHeight: 350, minWidth: 400 }} />{' '}
+				<img src={Image} alt="Some Product" style={{ minHeight: 350, minWidth: 400 }} /> {' '}
 			</DescriptionImageContainer>{' '}
+			{' '}
 		</DescriptionWrapper>
 	);
 }

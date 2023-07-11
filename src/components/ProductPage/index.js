@@ -90,7 +90,7 @@ const ProductPage = () => {
 								price={product.price}
 								count={1}
 								description1={product.description}
-								description2="Taste profile: A little savoury, a little sweet. A little crunchy a little chewy. A hint of pepper a tinge of chilly. Good health & great taste in every bite."
+								description2={product.vendorInformation}
 							/>
 						</BuyContainer>
 						<H1 size={34} lineHeight={42}>

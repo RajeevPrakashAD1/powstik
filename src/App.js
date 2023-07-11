@@ -14,7 +14,7 @@ import AddService from './components/addServicePage/addServicePage';
 import UpdateService from './components/updateServicePage/updateServicePage';
 import ProductPage from './components/ProductPage';
 import ServicePage from './components/servicePage';
-import { getCategory } from './configApi/utilFunction';
+import { getCategory, getUserDetails } from './configApi/utilFunction';
 
 import ContactUs from './components/dummyPages/contactUs';
 import Tos from './components/dummyPages/termsOfService';
@@ -30,9 +30,30 @@ import FetchUserDetails from './configApi/fetchUser';
 
 import ProductsPage from './components/ProductCatalog/productCatalog';
 import CustomerOrders from './components/orders/order';
+import Whislist from './components/wishlist/wishlist';
+import Merchantorder from './components/orderReceived/or';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function App() {
-	return (
+	const [ isLaptopScreen, setIsLaptopScreen ] = useState(window.innerWidth >= 1024);
+	const user = useSelector((state) => state.user.user);
+	useEffect(() => {
+		getUserDetails();
+	}, []);
+	useEffect(() => {
+		const handleResize = () => {
+			setIsLaptopScreen(window.innerWidth >= 1024);
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
+
+	return isLaptopScreen ? (
 		<Router>
 			<div className="App">
 				<Header />
@@ -46,7 +67,7 @@ function App() {
 					<Route path="/edit-account" element={<EditAccount />} />
 					<Route path="/account-details" element={<AccountDetails />} />
 					{/* <Route path="/products" element={<ProductResults />} /> */}
-					<Route path="/addproduct" element={<AddProduct />} />
+					{/* <Route path="/addproduct" element={<AddProduct />} /> */}
 					<Route path="/updateproduct" element={<UpdateProduct />} />
 					<Route path="/addservice" element={<AddService />} />
 					<Route path="/updateservice" element={<UpdateService />} />
@@ -61,12 +82,27 @@ function App() {
 					<Route path="/refund-policy" element={<RefundPolicy />} />
 					<Route path="/privacy-policy" element={<PrivacyPolicy />} />
 					<Route path="/credits" element={<Credits />} />
-					<Route path="/addProduct" element={<AddProduct />} />
-					<Route path="/addService" element={<AddService />} />
+
+					{/* <Route path="/addService" element={<AddService />} /> */}
 					<Route path="/order" element={<CustomerOrders />} />
-					<Route path="*" element={<NoRoutes />} />
+					<Route path="/wishlist" element={<Whislist />} />
+					{user &&
+					user.type === 'seller' && (
+						<React.Fragment>
+							<Route path="/addProduct" element={<AddProduct />} />
+							<Route path="/orderreceived" element={<Merchantorder />} />
+						</React.Fragment>
+					)}
+
+					<Route path="*" element={<NoRoutes screen={1} />} />
 				</Routes>
 			</div>
+		</Router>
+	) : (
+		<Router>
+			<Routes>
+				<Route path="*" element={<NoRoutes screen={0} />} />
+			</Routes>
 		</Router>
 	);
 }
